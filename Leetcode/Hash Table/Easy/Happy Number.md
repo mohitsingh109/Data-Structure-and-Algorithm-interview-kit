@@ -4,6 +4,9 @@ https://leetcode.com/problems/happy-number/
 ### Algo:
 Math, Hash Set
 
+### Ref:
+https://www.youtube.com/watch?v=lgjWXi21IAg
+
 ### Sol(Hash Set):
 ```
 class Solution {
