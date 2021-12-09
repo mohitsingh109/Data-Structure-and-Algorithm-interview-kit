@@ -34,9 +34,10 @@ public class Trie {
 
 class Solution {
     
-    Set<Integer> indexSeen = new HashSet<>();
+    boolean[] indexSeen;
     
     public boolean wordBreak(String s, List<String> wordDict) {
+        indexSeen = new boolean[s.length()];
         Trie root = new Trie();
         for(String word: wordDict)
             root.insert(word);
@@ -49,10 +50,10 @@ class Solution {
         if(index == str.length())
             return true;
         
-        if(indexSeen.contains(index))
+        if(indexSeen[index] == true)
             return false;
         
-        indexSeen.add(index);
+        indexSeen[index] = true;
         
         Trie curr = root;
         for(int start = index; start < str.length(); start++) {
