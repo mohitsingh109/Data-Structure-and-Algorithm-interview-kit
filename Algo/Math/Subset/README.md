@@ -1,4 +1,5 @@
 ### What is Subset?
+![subset](./introduction_subset.png)
 
 
 ### Reference 
