@@ -104,4 +104,22 @@ class Solution {
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
     }
 }
+---
+class Solution {
+    
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, amount + 1);
+        dp[0] = 0;
+        
+        for(int a = 1; a <= amount; a++) {
+            for(int c: coins) {
+                if(a >= c)
+                    dp[a] = Math.min(dp[a-c] + 1, dp[a]);
+            }
+        }
+        
+        return dp[amount] == amount + 1 ? -1: dp[amount];
+    }
+}
 ```
