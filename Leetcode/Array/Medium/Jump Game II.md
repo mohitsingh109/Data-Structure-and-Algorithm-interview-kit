@@ -49,3 +49,6 @@ class Solution {
     }
 }   
 ```
+
+### Reference
+- https://www.youtube.com/watch?v=dJ7sWiOoK7g
