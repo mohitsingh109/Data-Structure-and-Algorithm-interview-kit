@@ -8,14 +8,14 @@ DP
 ```
 class Solution {
     
-    int dp[][];
+    Boolean dp[][];
     
     public boolean isInterleave(String s1, String s2, String s3) {
         
         if((s1.length() + s2.length()) != s3.length())
             return false;
         
-        dp = new int[s1.length() + 1][s2.length() + 1];
+        dp = new Boolean[s1.length() + 1][s2.length() + 1];
         
         return isInterleave(s1, s2, s3, 0, 0);   
     }
@@ -29,8 +29,8 @@ class Solution {
             return true;
         
        
-        if(dp[start1][start2] != 0)
-            return dp[start1][start2] == 1;
+        if(dp[start1][start2] != null)
+            return dp[start1][start2];
         
         boolean result = false;
         
@@ -40,7 +40,7 @@ class Solution {
         if(result == false && start2 < s2.length() && s2.charAt(start2) == target.charAt(targetIndex))
             result = isInterleave(s1, s2, target, start1, start2 + 1);
             
-        dp[start1][start2] = result == true? 1: -1;
+        dp[start1][start2] = result;
         
         return result;
     }
