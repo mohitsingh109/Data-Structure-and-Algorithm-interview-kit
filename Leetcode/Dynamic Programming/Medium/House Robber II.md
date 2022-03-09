@@ -38,5 +38,29 @@ class Solution {
 
 ### Sol:
 ```
-
+class Solution {
+    
+    public int rob(int[] nums) {
+        if(nums.length == 1)
+            return nums[0];
+        
+        return Math.max(rob(nums, 0, nums.length - 1), rob(nums, 1, nums.length));
+    }
+    
+    public int rob(int nums[], int index, int len) {
+        int rob1, rob2;
+        rob1 = rob2 = 0;
+        
+        //dp[i] = Max(arr[i] + dp[i-2], dp[i-1])
+        //[rob1, rob2, nums[index], nums[index + 1], ....]
+        for(int i = index; i < len; i++) {
+            int temp = Math.max(nums[i] + rob1, rob2);
+            rob1 = rob2;
+            rob2 = temp;
+        }
+        
+        // as rob2 reaches the end of array and has max value so we can return it.
+        return rob2;
+    }
+}
 ```
