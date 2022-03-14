@@ -41,3 +41,43 @@ class Solution {
     }
 }
 ```
+
+### Sol-2:
+```
+class Solution {
+ 
+    public int minDifficulty(int[] jobDifficulty, int d) {
+        int jobs = jobDifficulty.length;
+        
+        if(d > jobs) return -1;
+        
+        int [][] dp = new int[d][jobs];
+        
+        // calculate minimum difficulty with d = 1
+        dp[0][0] = jobDifficulty[0];
+        
+        for(int i = 1; i < jobs; i++)
+            dp[0][i] = Math.max(dp[0][i - 1], jobDifficulty[i]);
+        
+        
+        // calculate minimum difficulty for each day
+        for(int i = 1; i < d; i++) {
+            
+            for(int j = i; j < jobs; j++) {
+                int max = 0;
+                dp[i][j] = Integer.MAX_VALUE;
+                
+                // for day d at job k
+                // dp[d][k] = Math.min(dp[d][k], dp[d - 1][k - 1] + Max(jobDifficulty[k : n]))
+                for(int k = j; k >= i; k--) {
+                   max = Math.max(max, jobDifficulty[k]);
+                   dp[i][j] = Math.min(dp[i][j] , dp[i - 1][k - 1] + max);
+                }
+            }
+        }
+        
+        
+        return dp[d - 1][jobs - 1];
+    }
+}
+```
